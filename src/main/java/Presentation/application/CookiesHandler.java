@@ -13,7 +13,8 @@ public class CookiesHandler {
             Cookie cookie = new Cookie(name, value);
             cookie.setPath("/");
             cookie.setMaxAge(maxAge);
-            cookie.setSecure(true); // Only send over HTTPS
+            // In dev (http) we must not mark as secure or browser will ignore it.
+            cookie.setSecure(false);
             cookie.setHttpOnly(true); // Prevent JavaScript access
             response.addCookie(cookie);
         } else {

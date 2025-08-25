@@ -1,5 +1,8 @@
 package Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import Domain.OrderDTO;
 import Facades.AdminFacade;
 import Presentation.application.View.UtilitiesView.Broadcaster;
@@ -11,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class AdminService {
     private UserService userService;
     private StoreService storeService;
@@ -21,14 +25,17 @@ public class AdminService {
         adminFacade = new AdminFacade();
     }
 
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
+    @Autowired
     public void setStoreService(StoreService storeService) {
         this.storeService = storeService;
     }
 
+    @Autowired
     public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
     }

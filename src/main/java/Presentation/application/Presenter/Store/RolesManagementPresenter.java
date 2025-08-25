@@ -3,7 +3,6 @@ package Presentation.application.Presenter.Store;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.RolesManagementView;
 import Presentation.application.View.UtilitiesView.Broadcaster;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -23,9 +22,9 @@ public class RolesManagementPresenter {
     private Set<String> roleFilter;
     private Integer storeID;
 
-    public RolesManagementPresenter(HttpServletRequest request) {
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
-        this.userService = ServiceInitializer.getInstance().getUserService();
+    public RolesManagementPresenter(StoreService storeService, UserService userService, HttpServletRequest request) {
+        this.storeService = storeService;
+        this.userService = userService;
         this.request = request;
         this.roleFilter = new HashSet<>(Arrays.asList("OWNER", "MANAGER", "CREATOR", "SUBSCRIBER"));
     }

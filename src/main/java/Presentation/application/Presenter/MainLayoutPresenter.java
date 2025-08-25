@@ -2,9 +2,7 @@ package Presentation.application.Presenter;
 
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.MainLayoutView;
-import Service.ServiceInitializer;
 import Service.UserService;
-import io.jsonwebtoken.security.SecurityException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import Domain.Store.Inventory.ProductDTO;
@@ -24,9 +22,9 @@ public class MainLayoutPresenter {
     private final HttpServletRequest request;
 
 
-    public MainLayoutPresenter(HttpServletRequest request) {
-        this.userService = ServiceInitializer.getInstance().getUserService();
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
+    public MainLayoutPresenter(HttpServletRequest request, UserService userService, StoreService storeService) {
+        this.userService = userService;
+        this.storeService = storeService;
         this.request = request;
     }
 
@@ -216,10 +214,6 @@ public class MainLayoutPresenter {
         return 0;
     }
 
-    private boolean isTokenValid(String token, String username) {
-        // Implement the logic to check if the token is valid
-        return userService.isValidToken(token, username);
-    }
     public void addToCart(ProductDTO product, int quantity) {
         userService.addProductToShoppingCart(product.getStoreID(), product.getProductID(), quantity, CookiesHandler.getUsernameFromCookies(request), CookiesHandler.getTokenFromCookies(request));
     }

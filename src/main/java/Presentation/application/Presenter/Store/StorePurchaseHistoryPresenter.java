@@ -3,7 +3,6 @@ package Presentation.application.Presenter.Store;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.StorePurchaseHistory;
 import Service.OrderService;
-import Service.ServiceInitializer;
 import Domain.OrderDTO;
 import Service.UserService;
 import com.vaadin.flow.component.grid.Grid;
@@ -20,9 +19,9 @@ public class StorePurchaseHistoryPresenter {
     private final UserService userService;
     private final HttpServletRequest request;
 
-    public StorePurchaseHistoryPresenter(HttpServletRequest request) {
-        orderService = ServiceInitializer.getInstance().getOrderService();
-        userService = ServiceInitializer.getInstance().getUserService();
+    public StorePurchaseHistoryPresenter(OrderService orderService, UserService userService, HttpServletRequest request) {
+        this.orderService = orderService;
+        this.userService = userService;
         this.request = request;
     }
 

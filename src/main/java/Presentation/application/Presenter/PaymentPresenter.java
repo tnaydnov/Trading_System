@@ -4,7 +4,6 @@ import Domain.Store.Inventory.ProductDTO;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.PaymentView;
 import Service.OrderService;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -23,10 +22,10 @@ public class PaymentPresenter {
     private final UserService userService;
     private HttpServletRequest request;
 
-    public PaymentPresenter(HttpServletRequest request) {
-        orderService = ServiceInitializer.getInstance().getOrderService();
-        storeService = ServiceInitializer.getInstance().getStoreService();
-        userService = ServiceInitializer.getInstance().getUserService();
+    public PaymentPresenter(HttpServletRequest request, OrderService orderService, StoreService storeService, UserService userService) {
+        this.orderService = orderService;
+        this.storeService = storeService;
+        this.userService = userService;
         this.request = request;
     }
 

@@ -7,7 +7,6 @@ import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.DiscountBox;
 import Presentation.application.View.Store.PolicyBox;
 import Presentation.application.View.Store.StoreManagementView;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -26,9 +25,9 @@ public class StoreManagementPresenter {
     private final StoreService storeService; // Assuming you have a StoreService
     private final HttpServletRequest request;
 
-    public StoreManagementPresenter(HttpServletRequest request) {
-        this.userService = ServiceInitializer.getInstance().getUserService();
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
+    public StoreManagementPresenter(UserService userService, StoreService storeService, HttpServletRequest request) {
+        this.userService = userService;
+        this.storeService = storeService;
         this.request = request;
     }
 

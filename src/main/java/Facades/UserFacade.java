@@ -51,22 +51,36 @@ public class UserFacade {
     }
 
     public Response<String> loginAsSubscriber(String username, String password){
+        System.out.println("[DEBUG LOGIN][UserFacade] Attempting login username='" + username + "'");
         Subscriber subscriber = userRepository.getSubscriber(username);
+        System.out.println("[DEBUG LOGIN][UserFacade] Subscriber exists=" + (subscriber != null));
         if (subscriber != null) {
-            if (PasswordEncoderUtil.matches(password,subscriber.getPassword())) {
+            boolean passwordMatches;
+            try {
+                passwordMatches = PasswordEncoderUtil.matches(password, subscriber.getPassword());
+            } catch (Exception ex) {
+                System.out.println("[DEBUG LOGIN][UserFacade] Password match threw exception: " + ex.getMessage());
+                passwordMatches = false;
+            }
+            System.out.println("[DEBUG LOGIN][UserFacade] passwordMatches=" + passwordMatches);
+            if (passwordMatches) {
                 String token = subscriber.generateToken();
                 Boolean answer = userRepository.addLoggedIn(username);
+                System.out.println("[DEBUG LOGIN][UserFacade] addLoggedIn returned=" + answer);
                 if (!answer) {
                     SystemLogger.error("[ERROR] User " + username + " is already logged in");
                     return Response.error("User is already logged in", null);
                 }
                 SystemLogger.info("[SUCCESS] User " + username + " logged in successfully");
+                System.out.println("[DEBUG LOGIN][UserFacade] Success returning token=" + token);
                 return Response.success("Logged in successfully", token);
             }
             SystemLogger.error("[ERROR] Incorrect password for user " + username);
+            System.out.println("[DEBUG LOGIN][UserFacade] Password mismatch storedHash='" + (subscriber.getPassword()==null?"null":subscriber.getPassword()) + "'");
             return Response.error("Incorrect password", null);
         }
         SystemLogger.error("[ERROR] User " + username + " does not exist");
+        System.out.println("[DEBUG LOGIN][UserFacade] User not found in repository. Current subscriber count=" + userRepository.getSubscribers().size());
         return Response.error("User does not exist", null);
     }
 

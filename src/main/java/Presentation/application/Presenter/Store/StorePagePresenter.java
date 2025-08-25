@@ -4,7 +4,6 @@ import Domain.Store.Inventory.Product;
 import Domain.Store.Inventory.ProductDTO;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.StorePageView;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -23,9 +22,9 @@ public class StorePagePresenter {
     private final HttpServletRequest request;
 
 
-    public StorePagePresenter(HttpServletRequest request) {
-        this.userService = ServiceInitializer.getInstance().getUserService();
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
+    public StorePagePresenter(UserService userService, StoreService storeService, HttpServletRequest request) {
+        this.userService = userService;
+        this.storeService = storeService;
         this.request = request;
     }
 

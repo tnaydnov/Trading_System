@@ -1,7 +1,6 @@
 package Presentation.application.Presenter;
 
 import Presentation.application.View.LoginView;
-import Service.ServiceInitializer;
 import Service.UserService;
 import Utilities.Response;
 import org.springframework.stereotype.Component;
@@ -11,10 +10,10 @@ import java.util.List;
 @Component
 public class LoginPresenter {
     private LoginView view;
-    private final UserService userService; // Assuming you have a UserService
+    private final UserService userService;
 
-    public LoginPresenter() {
-        this.userService = ServiceInitializer.getInstance().getUserService();
+    public LoginPresenter(UserService userService) {
+        this.userService = userService;
     }
 
     public void attachView(LoginView view) {
@@ -22,19 +21,26 @@ public class LoginPresenter {
     }
 
     public void loginAsSubscriber(String username, String password) {
+        System.out.println("[DEBUG LOGIN][Presenter] Invoked loginAsSubscriber with username='" + username + "'");
         try {
             Response<String> response = userService.loginAsSubscriber(username, password);
+            System.out.println("[DEBUG LOGIN][Presenter] Response success=" + response.isSuccess() + ", message='" + response.getMessage() + "', token=" + response.getData());
             if (response.isSuccess()) {
                 String token = response.getData();
                 if (token != null) {
+                    System.out.println("[DEBUG LOGIN][Presenter] Token not null, updating view");
                     view.getUI().ifPresent(ui -> ui.access(() -> view.loginSuccessful(username, token)));
                 } else {
+                    System.out.println("[DEBUG LOGIN][Presenter] Token null despite success");
                     view.getUI().ifPresent(ui -> ui.access(() -> view.showError("Invalid username or password")));
                 }
             } else {
+                System.out.println("[DEBUG LOGIN][Presenter] Response indicates failure");
                 view.getUI().ifPresent(ui -> ui.access(() -> view.showError("Invalid username or password")));
             }
         } catch (Exception e) {
+            System.out.println("[DEBUG LOGIN][Presenter] Exception: " + e.getClass().getName() + " - " + e.getMessage());
+            e.printStackTrace();
             view.getUI().ifPresent(ui -> ui.access(() -> view.showError("An error occurred during login")));
         }
     }

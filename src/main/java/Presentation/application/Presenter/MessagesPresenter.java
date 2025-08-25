@@ -2,7 +2,6 @@ package Presentation.application.Presenter;
 
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.MessagesList;
-import Service.ServiceInitializer;
 import Service.UserService;
 import Utilities.Messages.Message;
 import Utilities.Messages.nominateManagerMessage;
@@ -11,17 +10,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Queue;
 
 @Component
 public class MessagesPresenter {
 
-    private MessagesList view;
+    private MessagesList view; // retained for API symmetry
     UserService userService;
     private final HttpServletRequest request;
 
-    public MessagesPresenter(HttpServletRequest request){
-        userService = ServiceInitializer.getInstance().getUserService();
+    public MessagesPresenter(UserService userService, HttpServletRequest request){
+        this.userService = userService;
         this.request = request;
     }
 

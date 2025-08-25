@@ -2,189 +2,164 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>111</groupId>
-    <artifactId>TradingSystem</artifactId>
-    <version>1.0-SNAPSHOT</version>
+  <modelVersion>4.0.0</modelVersion>
 
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.28</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.12.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.12.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.12.5</version>
-        </dependency>
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>0.12.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>6.3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.8.27</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.17.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.23.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.23.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.1</version>
-            <scope>compile</scope>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-core</artifactId>-->
-<!--            <version>5.12.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-core</artifactId>
-            <version>24.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
-            <version>24.3.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.java-websocket</groupId>
-            <artifactId>Java-WebSocket</artifactId>
-            <version>1.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>3.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.orm</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.5.2.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.powermock</groupId>-->
-<!--            <artifactId>powermock-api-mockito2</artifactId>-->
-<!--            <version>2.0.9</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-inline</artifactId>
-            <version>5.2.0</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <argLine>
-                        --add-opens java.base/java.lang=ALL-UNNAMED
-                        --add-opens java.base/java.lang.reflect=ALL-UNNAMED
-                    </argLine>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.3.1</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>111</groupId>
+  <artifactId>TradingSystem</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <java.version>17</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <!-- Web + JSON -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Security (instead of spring-security-core) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+
+    <!-- Vaadin (align to one artifact & one version) -->
+    <dependency>
+      <groupId>com.vaadin</groupId>
+      <artifactId>vaadin-spring-boot-starter</artifactId>
+      <version>24.3.12</version>
+    </dependency>
+
+    <!-- Thymeleaf (keep only if you actually use it alongside Vaadin) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <!-- Testing (JUnit 4 + 5 + Mockito inline) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.mockito</groupId>
+          <artifactId>mockito-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <!-- This lets JUnit 5 run JUnit 4 tests -->
+    <dependency>
+    <groupId>org.junit.vintage</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <scope>test</scope>
+    </dependency>
+
+    <!-- Optional: if you removed it before, add plain JUnit 4 API back -->
+    <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13.2</version>
+    <scope>test</scope>
+    </dependency>
+
+    <!-- If you want inline mocking -->
+    <dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-inline</artifactId>
+    <version>5.2.0</version>
+    <scope>test</scope>
+    </dependency>
+
+
+    <!-- Data JPA (no explicit version needed) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- Databases -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- JWT (modules only; remove umbrella 'jjwt') -->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
+      <version>0.12.5</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>0.12.5</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>0.12.5</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Utils (if you really use it) -->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>5.8.27</version>
+    </dependency>
+
+    <!-- WebSocket (if used) -->
+    <dependency>
+      <groupId>org.java-websocket</groupId>
+      <artifactId>Java-WebSocket</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+
+    <!-- Mockito inline (already excluded core above) -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <argLine>
+            --add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+          </argLine>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

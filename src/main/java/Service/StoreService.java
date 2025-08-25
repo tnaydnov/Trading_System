@@ -1,5 +1,8 @@
 package Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import Domain.Store.Conditions.ConditionDTO;
 import Domain.Store.Discounts.DiscountDTO;
 import Domain.Store.Inventory.ProductDTO;
@@ -12,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@Service
 public class StoreService {
     private final StoreFacade storeFacade;
     private UserService userService;
@@ -21,10 +25,12 @@ public class StoreService {
         storeFacade = new StoreFacade();
     }
 
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
+    @Autowired
     public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
     }

@@ -3,7 +3,6 @@ package Presentation.application.Presenter;
 import Domain.Store.Inventory.ProductDTO;
 import Presentation.application.View.ShoppingCartView;
 import Presentation.application.CookiesHandler;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -24,10 +23,10 @@ public class ShoppingCartPresenter {
     private HttpServletRequest request;
     private double totalPrice; // Store the total price
 
-    public ShoppingCartPresenter(HttpServletRequest request) {
-        this.userService = ServiceInitializer.getInstance().getUserService();
+    public ShoppingCartPresenter(HttpServletRequest request, UserService userService, StoreService storeService) {
+        this.userService = userService;
+        this.storeService = storeService;
         this.request = request;
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
         productList = new ArrayList<>();
     }
 

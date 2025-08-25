@@ -1,18 +1,14 @@
 package Presentation.application.Presenter;
 
-import Domain.OrderDTO;
-import Domain.Store.Inventory.ProductDTO;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.AdminView;
 import Service.AdminService;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,15 +17,15 @@ import java.util.Set;
 @Component
 public class AdminPresenter {
     AdminView view;
-    private final UserService userService; // Assuming you have a UserService
+    private final UserService userService;
     private final StoreService storeService;
     private final AdminService adminService;
     private final HttpServletRequest request;
 
-    public AdminPresenter(HttpServletRequest request) {
-        this.userService = ServiceInitializer.getInstance().getUserService();
-        this.storeService = ServiceInitializer.getInstance().getStoreService();
-        this.adminService = ServiceInitializer.getInstance().getAdminService();
+    public AdminPresenter(UserService userService, StoreService storeService, AdminService adminService, HttpServletRequest request) {
+        this.userService = userService;
+        this.storeService = storeService;
+        this.adminService = adminService;
         this.request = request;
     }
 
@@ -38,9 +34,9 @@ public class AdminPresenter {
     }
 
     public List<String> getOpenStores() {
-        String token = CookiesHandler.getTokenFromCookies(request);
-        String username = CookiesHandler.getUsernameFromCookies(request);
-        return storeService.getAllStores(username, token).getData();
+    String token = CookiesHandler.getTokenFromCookies(request);
+    String username = CookiesHandler.getUsernameFromCookies(request);
+    return storeService.getAllStores(username, token).getData();
     }
 
     public void closeStore(String storeName) {
@@ -57,10 +53,7 @@ public class AdminPresenter {
     }
 
     public void removeSubscriber(String subName) {
-        String token = CookiesHandler.getTokenFromCookies(request);
-        String username = CookiesHandler.getUsernameFromCookies(request);
-
-
+    // Not implemented: no service method for removing subscribers provided
     }
 
     public boolean suspendSubscriber(String subName, Date date) {

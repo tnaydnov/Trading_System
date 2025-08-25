@@ -5,7 +5,6 @@ import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.StorePurchaseHistoryAdmin;
 import Service.AdminService;
 import Service.OrderService;
-import Service.ServiceInitializer;
 import Service.UserService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
@@ -25,11 +24,11 @@ public class SubscriberPurchaseHistoryAdminPresenter {
     private final HttpServletRequest request;
     private final AdminService adminService;
 
-    public SubscriberPurchaseHistoryAdminPresenter(HttpServletRequest request) {
-        orderService = ServiceInitializer.getInstance().getOrderService();
-        userService = ServiceInitializer.getInstance().getUserService();
+    public SubscriberPurchaseHistoryAdminPresenter(OrderService orderService, UserService userService, AdminService adminService, HttpServletRequest request) {
+        this.orderService = orderService;
+        this.userService = userService;
+        this.adminService = adminService;
         this.request = request;
-        adminService = ServiceInitializer.getInstance().getAdminService();
     }
 
     public void attachView(SubscriberPurchaseHistoryAdmin view) {

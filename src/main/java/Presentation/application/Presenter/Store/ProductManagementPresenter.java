@@ -3,7 +3,6 @@ package Presentation.application.Presenter.Store;
 import Domain.Store.Inventory.ProductDTO;
 import Presentation.application.CookiesHandler;
 import Presentation.application.View.Store.ProductManagementView;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
 import Utilities.Response;
@@ -21,9 +20,9 @@ public class ProductManagementPresenter {
     private final UserService userService;
     private HttpServletRequest request;
 
-    public ProductManagementPresenter(HttpServletRequest request) {
-        this.storeService = ServiceInitializer.getInstance().getStoreService(); // Assume this service is implemented
-        this.userService = ServiceInitializer.getInstance().getUserService(); // Assume this service is implemented
+    public ProductManagementPresenter(StoreService storeService, UserService userService, HttpServletRequest request) {
+        this.storeService = storeService;
+        this.userService = userService;
         this.request = request;
     }
 

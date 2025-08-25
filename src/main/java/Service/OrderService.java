@@ -1,20 +1,22 @@
 package Service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import Domain.Externals.Payment.PaymentGateway;
 import Domain.Externals.Suppliers.SupplySystem;
 import Domain.OrderDTO;
 import Domain.Store.Inventory.ProductDTO;
 
 import Facades.OrderFacade;
-import Presentation.application.View.UtilitiesView.Broadcaster;
 import Utilities.Response;
 import Utilities.SystemLogger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+@Service
 public class OrderService {
     private final OrderFacade orderFacade;
     private UserService userService;
@@ -22,19 +24,22 @@ public class OrderService {
     private StoreService storeService;
     private PaymentGateway paymentGateway;
 
-    public OrderService(PaymentGateway paymentGateway, SupplySystem supplySystem,StoreService storeService) {
+    public OrderService() {
         this.orderFacade = new OrderFacade();
-        this.supplySystem = supplySystem;
-        this.paymentGateway = paymentGateway;
-        this.storeService=storeService;
     }
 
     public OrderFacade getOrderFacade() {
         return orderFacade;
     }
 
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setStoreService(StoreService storeService) {
+        this.storeService = storeService;
     }
 
     public Response<Map<String, String>> getOrderHistory(Integer storeID) {

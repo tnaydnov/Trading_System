@@ -2,7 +2,6 @@ package Presentation.application.Presenter;
 
 
 import Presentation.application.View.RegisterView;
-import Service.ServiceInitializer;
 import Service.UserService;
 import Utilities.Response;
 import org.springframework.stereotype.Component;
@@ -13,8 +12,8 @@ public class RegisterPresenter {
     private final UserService userService;
     private RegisterView view;
 
-    public RegisterPresenter() {
-        this.userService = ServiceInitializer.getInstance().getUserService();
+    public RegisterPresenter(UserService userService) {
+        this.userService = userService;
     }
 
     public void attachView(RegisterView view) {

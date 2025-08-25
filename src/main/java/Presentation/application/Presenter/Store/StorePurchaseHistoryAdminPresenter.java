@@ -6,7 +6,6 @@ import Presentation.application.View.Store.StorePurchaseHistory;
 import Presentation.application.View.Store.StorePurchaseHistoryAdmin;
 import Service.AdminService;
 import Service.OrderService;
-import Service.ServiceInitializer;
 import Service.UserService;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
@@ -22,11 +21,11 @@ public class StorePurchaseHistoryAdminPresenter {
     private final HttpServletRequest request;
     private final AdminService adminService;
 
-    public StorePurchaseHistoryAdminPresenter(HttpServletRequest request) {
-        orderService = ServiceInitializer.getInstance().getOrderService();
-        userService = ServiceInitializer.getInstance().getUserService();
+    public StorePurchaseHistoryAdminPresenter(OrderService orderService, UserService userService, AdminService adminService, HttpServletRequest request) {
+        this.orderService = orderService;
+        this.userService = userService;
+        this.adminService = adminService;
         this.request = request;
-        adminService = ServiceInitializer.getInstance().getAdminService();
     }
 
     public void attachView(StorePurchaseHistoryAdmin view) {

@@ -10,6 +10,7 @@ import Utilities.Messages.nominateOwnerMessage;
 import Utilities.Response;
 import Utilities.SystemLogger;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 import java.util.List;
@@ -31,9 +32,11 @@ public class UserService {
 
     // Setters for dependencies
 
+    @Autowired
     public void setStoreService(StoreService storeService) {
         this.storeService = storeService;
     }
+    @Autowired
     public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
     }
@@ -66,8 +69,11 @@ public class UserService {
      * @return If successful, returns a success message & the token. <br> If not, returns an error message.
      */
     public synchronized Response<String> loginAsSubscriber(String username, String password) {
-        SystemLogger.info("[START] User: " + username + " is trying to login");
-        return userFacade.loginAsSubscriber(username, password);
+    SystemLogger.info("[START] User: " + username + " is trying to login");
+    System.out.println("[DEBUG LOGIN][UserService] loginAsSubscriber called username='" + username + "' passwordLength=" + (password==null?"null":password.length()));
+    Response<String> res = userFacade.loginAsSubscriber(username, password);
+    System.out.println("[DEBUG LOGIN][UserService] Returning success=" + res.isSuccess() + " message='" + res.getMessage() + "' token=" + res.getData());
+    return res;
     }
 
     /**

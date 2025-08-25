@@ -8,9 +8,9 @@ import Domain.Externals.Suppliers.ProxySupplySystem;
 import Domain.Externals.Suppliers.SupplySystem;
 import Domain.Users.Subscriber.Subscriber;
 import Service.OrderService;
-import Service.ServiceInitializer;
 import Service.StoreService;
 import Service.UserService;
+import Service.AdminService;
 import Utilities.Response;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -99,11 +99,20 @@ public class Configuration {
 
     public static void init(JsonNode configNode) throws JsonProcessingException {
         Configuration config = new Configuration(configNode);
-        ServiceInitializer.reset();
-        ServiceInitializer serviceInitializer = ServiceInitializer.getInstance();
-       UserService userService = serviceInitializer.getUserService();
-      StoreService storeService = serviceInitializer.getStoreService();
-     OrderService orderService = serviceInitializer.getOrderService();
+    // ServiceInitializer removed; this legacy method now creates new instances manually (detached from Spring context)
+    UserService userService = new UserService();
+    StoreService storeService = new StoreService();
+    AdminService adminService = new AdminService();
+    OrderService orderService = new OrderService();
+    // wire minimal dependencies for scripting
+    userService.setStoreService(storeService);
+    userService.setAdminService(adminService);
+    storeService.setUserService(userService);
+    storeService.setAdminService(adminService);
+    adminService.setUserService(userService);
+    adminService.setStoreService(storeService);
+    adminService.setOrderService(orderService);
+    orderService.setUserService(userService);
         Subscriber subscriber=null;
         for (FunctionCall functionCall : config.getInitSequence()) {
             try {
@@ -121,7 +130,9 @@ public class Configuration {
                     case "addStore":
                         userService.loginAsSubscriber(params.get("ownerUsername").asText(), "Password123!"); // Assuming all passwords are the same
                         subscriber = userService.getUserFacade().getUserRepository().getSubscriber(params.get("ownerUsername").asText());
-                        storeService.addStore(params.get("storeName").asText(), params.get("ownerUsername").asText(), subscriber.getToken());
+                        if (subscriber != null) {
+                            storeService.addStore(params.get("storeName").asText(), params.get("ownerUsername").asText(), subscriber.getToken());
+                        }
                         break;
                     case "addProductToStore":
                         ArrayList<String> categories = new ArrayList<>();
@@ -132,7 +143,8 @@ public class Configuration {
                                 categories.add(elements.next().asText());
                             }
                         }
-                        storeService.addProductToStore(
+                        if (subscriber != null) {
+                            storeService.addProductToStore(
                                 params.get("storeIndex").asInt(),
                                 params.get("productName").asText(),
                                 params.get("description").asText(),
@@ -143,9 +155,11 @@ public class Configuration {
                                 params.get("ownerUsername").asText(),
                                 subscriber.getToken()
                         );
+                        }
                         break;
                     case "SendManagerNominationRequest":
-                        Response<Integer> managerRes = userService.SendManagerNominationRequest(
+                        if (subscriber != null) {
+                            Response<Integer> managerRes = userService.SendManagerNominationRequest(
                                 params.get("storeIndex").asInt(),
                                 params.get("ownerUsername").asText(),
                                 params.get("managerUsername").asText(),
@@ -153,31 +167,36 @@ public class Configuration {
                                 subscriber.getToken()
                         );
                         userService.managerNominationResponse(managerRes.getData(), params.get("managerUsername").asText(), true, "Password123!"); // Assuming all passwords are the same
+                        }
                         break;
                     case "managerNominationResponse":
                         userService.managerNominationResponse(params.get("requestId").asInt(), params.get("managerUsername").asText(), params.get("accepted").asBoolean(), "Password123!"); // Assuming all passwords are the same
                         break;
                     case "SendOwnerNominationRequest":
-                        Response<Integer> ownerRes = userService.SendOwnerNominationRequest(
+                        if (subscriber != null) {
+                            Response<Integer> ownerRes = userService.SendOwnerNominationRequest(
                                 params.get("storeIndex").asInt(),
                                 params.get("ownerUsername").asText(),
                                 params.get("newOwnerUsername").asText(),
                                 subscriber.getToken()
                         );
                         userService.ownerNominationResponse(ownerRes.getData(), params.get("newOwnerUsername").asText(), true, "Password123!"); // Assuming all passwords are the same
+                        }
                         break;
                     case "ownerNominationResponse":
                         userService.ownerNominationResponse(params.get("requestId").asInt(), params.get("newOwnerUsername").asText(), params.get("accepted").asBoolean(), "Password123!"); // Assuming all passwords are the same
                         break;
 
                     case "addProductToShoppingCart":
-                        userService.addProductToShoppingCart(
-                                params.get("storeIndex").asInt(),
-                                params.get("productId").asInt(),
-                                params.get("quantity").asInt(),
-                                params.get("username").asText(),
-                                subscriber.getToken()
-                        );
+                        if (subscriber != null) {
+                            userService.addProductToShoppingCart(
+                                    params.get("storeIndex").asInt(),
+                                    params.get("productId").asInt(),
+                                    params.get("quantity").asInt(),
+                                    params.get("username").asText(),
+                                    subscriber.getToken()
+                            );
+                        }
                         break;
                     case "logoutAsSubscriber":
                         userService.logoutAsSubscriber(params.get("username").asText());
