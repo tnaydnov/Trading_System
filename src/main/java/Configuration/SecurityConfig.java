@@ -4,12 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
-
-/**
- * Basic security configuration allowing all Vaadin routes and backend calls.
- * Disables CSRF for simplicity (the application uses in-memory state & tokens).
- * Removes the default generated login page / user so custom login logic works.
- */
 @Configuration
 public class SecurityConfig {
 

@@ -343,10 +343,10 @@ public class MainLayoutView extends AppLayout implements BeforeEnterObserver {
             UI.getCurrent().getPage().executeJs("setTimeout(function() { window.location.reload(); }, 1);");
         });
         homeButton.getElement().getStyle().set("color", "black");
-        homeButton.getElement().getStyle().set("margin-right", "10px"); // Add a margin to the right side of the search button
+    homeButton.getElement().getStyle().set("margin-right", "10px");
         //icon
         homeButton.setIcon(new Icon(VaadinIcon.HOME));
-        homeButton.getElement().getStyle().set("margin-left", "10px"); // Add a margin to the right side of the search button
+    homeButton.getElement().getStyle().set("margin-left", "10px");
 
         addToNavbar(homeButton);
     }
@@ -355,7 +355,7 @@ public class MainLayoutView extends AppLayout implements BeforeEnterObserver {
         //get all stores and for each store add a button to the main content area
         List<String> stores = getAllStores();
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setSpacing(true); // Optional: Set spacing between components
+    verticalLayout.setSpacing(true);
 
         for (int i = 0; i < stores.size(); i += 4) {
             HorizontalLayout row = new HorizontalLayout();

@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-// (All initialization moved to a separate runner; no extra imports needed here)
-
 /**
  * The entry point of the Spring Boot application.
  *

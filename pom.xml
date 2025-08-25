@@ -21,32 +21,32 @@
   </properties>
 
   <dependencies>
-    <!-- Web + JSON -->
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- Security (instead of spring-security-core) -->
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
 
-    <!-- Vaadin (align to one artifact & one version) -->
+    
     <dependency>
       <groupId>com.vaadin</groupId>
       <artifactId>vaadin-spring-boot-starter</artifactId>
       <version>24.3.12</version>
     </dependency>
 
-    <!-- Thymeleaf (keep only if you actually use it alongside Vaadin) -->
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
-    <!-- Testing (JUnit 4 + 5 + Mockito inline) -->
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -59,14 +59,14 @@
       </exclusions>
     </dependency>
 
-    <!-- This lets JUnit 5 run JUnit 4 tests -->
+    
     <dependency>
     <groupId>org.junit.vintage</groupId>
     <artifactId>junit-vintage-engine</artifactId>
     <scope>test</scope>
     </dependency>
 
-    <!-- Optional: if you removed it before, add plain JUnit 4 API back -->
+    
     <dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
@@ -74,7 +74,7 @@
     <scope>test</scope>
     </dependency>
 
-    <!-- If you want inline mocking -->
+    
     <dependency>
     <groupId>org.mockito</groupId>
     <artifactId>mockito-inline</artifactId>
@@ -83,13 +83,13 @@
     </dependency>
 
 
-    <!-- Data JPA (no explicit version needed) -->
+    
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-    <!-- Databases -->
+    
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -101,7 +101,7 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- JWT (modules only; remove umbrella 'jjwt') -->
+    
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt-api</artifactId>
@@ -120,21 +120,21 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Utils (if you really use it) -->
+    
     <dependency>
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
       <version>5.8.27</version>
     </dependency>
 
-    <!-- WebSocket (if used) -->
+    
     <dependency>
       <groupId>org.java-websocket</groupId>
       <artifactId>Java-WebSocket</artifactId>
       <version>1.5.6</version>
     </dependency>
 
-    <!-- Mockito inline (already excluded core above) -->
+    
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-inline</artifactId>

@@ -103,7 +103,7 @@ public class AdminView extends AppLayout  {
 
     private void organizeActions() {
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setSpacing(true); // Optional: Set spacing between components
+    verticalLayout.setSpacing(true);
         verticalLayout.setAlignItems(FlexComponent.Alignment.CENTER); // Center align the rows within the vertical layout
 
 

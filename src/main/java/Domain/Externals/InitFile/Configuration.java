@@ -99,12 +99,11 @@ public class Configuration {
 
     public static void init(JsonNode configNode) throws JsonProcessingException {
         Configuration config = new Configuration(configNode);
-    // ServiceInitializer removed; this legacy method now creates new instances manually (detached from Spring context)
     UserService userService = new UserService();
     StoreService storeService = new StoreService();
     AdminService adminService = new AdminService();
     OrderService orderService = new OrderService();
-    // wire minimal dependencies for scripting
+        
     userService.setStoreService(storeService);
     userService.setAdminService(adminService);
     storeService.setUserService(userService);
@@ -128,7 +127,7 @@ public class Configuration {
                         userService.loginAsSubscriber(params.get("username").asText(), params.get("password").asText());
                         break;
                     case "addStore":
-                        userService.loginAsSubscriber(params.get("ownerUsername").asText(), "Password123!"); // Assuming all passwords are the same
+                        userService.loginAsSubscriber(params.get("ownerUsername").asText(), "Password123!");
                         subscriber = userService.getUserFacade().getUserRepository().getSubscriber(params.get("ownerUsername").asText());
                         if (subscriber != null) {
                             storeService.addStore(params.get("storeName").asText(), params.get("ownerUsername").asText(), subscriber.getToken());
@@ -166,11 +165,11 @@ public class Configuration {
                                 new ArrayList<>(params.get("permissions").findValuesAsText("")),
                                 subscriber.getToken()
                         );
-                        userService.managerNominationResponse(managerRes.getData(), params.get("managerUsername").asText(), true, "Password123!"); // Assuming all passwords are the same
+                        userService.managerNominationResponse(managerRes.getData(), params.get("managerUsername").asText(), true, "Password123!");
                         }
                         break;
                     case "managerNominationResponse":
-                        userService.managerNominationResponse(params.get("requestId").asInt(), params.get("managerUsername").asText(), params.get("accepted").asBoolean(), "Password123!"); // Assuming all passwords are the same
+                        userService.managerNominationResponse(params.get("requestId").asInt(), params.get("managerUsername").asText(), params.get("accepted").asBoolean(), "Password123!");
                         break;
                     case "SendOwnerNominationRequest":
                         if (subscriber != null) {
@@ -180,11 +179,11 @@ public class Configuration {
                                 params.get("newOwnerUsername").asText(),
                                 subscriber.getToken()
                         );
-                        userService.ownerNominationResponse(ownerRes.getData(), params.get("newOwnerUsername").asText(), true, "Password123!"); // Assuming all passwords are the same
+                        userService.ownerNominationResponse(ownerRes.getData(), params.get("newOwnerUsername").asText(), true, "Password123!");
                         }
                         break;
                     case "ownerNominationResponse":
-                        userService.ownerNominationResponse(params.get("requestId").asInt(), params.get("newOwnerUsername").asText(), params.get("accepted").asBoolean(), "Password123!"); // Assuming all passwords are the same
+                        userService.ownerNominationResponse(params.get("requestId").asInt(), params.get("newOwnerUsername").asText(), params.get("accepted").asBoolean(), "Password123!");
                         break;
 
                     case "addProductToShoppingCart":

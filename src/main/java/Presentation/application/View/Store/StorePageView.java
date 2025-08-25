@@ -74,10 +74,10 @@ public class StorePageView extends AppLayout implements BeforeEnterObserver {
         container.getStyle().set("align-items", "center");
         container.getStyle().set("justify-content", "center");
         container.getStyle().set("padding", "20px");
-        container.getStyle().set("background-color", "#E6DCD3"); // Optional: set a background color
-        container.getStyle().set("border", "2px solid #B4A79E"); // Optional: set a border
-        container.getStyle().set("border-radius", "8px"); // Optional: set border radius for rounded corners
-        container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)"); // Optional: add a subtle box shadow
+    container.getStyle().set("background-color", "#E6DCD3");
+    container.getStyle().set("border", "2px solid #B4A79E");
+    container.getStyle().set("border-radius", "8px");
+    container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)");
         container.setWidth("90%"); // Adjust width to content
         container.setHeight("auto"); // Adjust height to content
         //margins left and right auto to center the container
@@ -115,10 +115,10 @@ public class StorePageView extends AppLayout implements BeforeEnterObserver {
 //        container.getStyle().set("align-items", "center");
 //        container.getStyle().set("justify-content", "center");
 //        container.getStyle().set("padding", "20px");
-//        container.getStyle().set("background-color", "#E6DCD3"); // Optional: set a background color
-//        container.getStyle().set("border", "2px solid #B4A79E"); // Optional: set a border
-//        container.getStyle().set("border-radius", "8px"); // Optional: set border radius for rounded corners
-//        container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)"); // Optional: add a subtle box shadow
+//        container.getStyle().set("background-color", "#E6DCD3");
+//        container.getStyle().set("border", "2px solid #B4A79E");
+//        container.getStyle().set("border-radius", "8px");
+//        container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)");
 //        container.setWidth("90%"); // Adjust width to content
 //        container.setHeight("auto"); // Adjust height to content
 //        //margins left and right auto to center the container
@@ -219,10 +219,10 @@ public class StorePageView extends AppLayout implements BeforeEnterObserver {
         container.getStyle().set("align-items", "center");
         container.getStyle().set("justify-content", "center");
         container.getStyle().set("padding", "20px");
-        container.getStyle().set("background-color", "#E6DCD3"); // Optional: set a background color
-        container.getStyle().set("border", "2px solid #B4A79E"); // Optional: set a border
-        container.getStyle().set("border-radius", "8px"); // Optional: set border radius for rounded corners
-        container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)"); // Optional: add a subtle box shadow
+    container.getStyle().set("background-color", "#E6DCD3");
+    container.getStyle().set("border", "2px solid #B4A79E");
+    container.getStyle().set("border-radius", "8px");
+    container.getStyle().set("box-shadow", "0 2px 4px rgba(0, 0, 0, 0.1)");
         container.setWidth("90%"); // Adjust width to content
         container.setHeight("auto"); // Adjust height to content
         container.getStyle().set("margin-left", "auto");

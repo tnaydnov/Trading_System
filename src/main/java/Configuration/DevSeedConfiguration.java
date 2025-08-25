@@ -14,15 +14,14 @@ public class DevSeedConfiguration {
 
     @Bean
     public ApplicationRunner demoData(UserService userService, StoreService storeService) {
-        return args -> {
-            // Simple idempotent seeding: only if users don't already exist
+    return args -> {
             if (!userService.userExists("alice")) {
                 userService.register("alice", "Password123!");
             }
             if (!userService.userExists("bob")) {
                 userService.register("bob", "Password123!");
             }
-            // login alice to create a store
+            
             Response<String> login = userService.loginAsSubscriber("alice", "Password123!");
             if (login.isSuccess()) {
                 String token = login.getData();
